@@ -1,0 +1,59 @@
+<h2>Here is a list of all of the books written by our Authors!</h2>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Title" #input>
+
+</mat-form-field>
+
+<table mat-table matSort [dataSource]="booksDataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="ID">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="Title">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let element">{{element.Title}}</td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="Pub_Date">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>Pub_Date</th>
+        <td mat-cell *matCellDef="let element">{{element.PubDate}}</td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">{{element.Price}}</td>
+
+    </ng-container>
+
+
+    <ng-container matColumnDef="Notes">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>Notes</th>
+        <td mat-cell *matCellDef="let element">{{element.Notes}}</td>
+
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay;sticky:true" class="sticky-header"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="book-element-row"></tr>
+    <tr mat-row class="mat-row" *matNoDataRow>
+        <td mat-cell class="mat-cell" colspan="5">No Books matching filter "{{input.value}}"</td>
+    </tr>
+
+
+
+
+
+</table>
+<br>
+<div>
+    <mat-paginator #paginator class="custom-paginator" [pageSizeOptions]="[5,10,20]" aria-label="Select page"></mat-paginator>
+</div>
+
+
+

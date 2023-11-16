@@ -1,0 +1,215 @@
+
+<mat-card appearance="raised">
+    
+    <mat-card-content>
+        Please enter the following information regarading the new author,
+        some fields are optional
+    </mat-card-content>
+
+</mat-card>
+
+<div class="form">
+    <h2 id="new author">Add a New Author</h2>
+    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit(); showSnackbar('Author has been added', 'Done', '2000')">
+        <label for="id">Author ID</label>
+        <input #authorId type="text" id="au_id" placeholder="Ex 111-11-1111" formControlName="id" required>
+        <div class="char-count"> <h5>Characters: {{authorId.value.length}}/11</h5></div>
+        <div *ngIf="id?.invalid && (id?.dirty || id?.touched)" class="alert alert-danger">
+            <div *ngIf="id?.errors?.['required']">
+                Author ID is required
+
+            </div>
+            <div *ngIf="id?.errors?.['minlength'] ||id?.errors?.['maxlength']">
+                Author ID must be 11 characters long
+            </div>
+
+
+
+
+        </div>
+
+        <label for="LastName"> Last Name</label>
+        <input type="text" id="lname" placeholder="Author Last Name" formControlName="lastName" required>
+        <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="alert alert-danger">
+            <div *ngIf="lastName?.errors?.['required']">
+                Last Name is required
+            </div>
+
+        </div>
+
+
+
+
+        <label for="FirstName">First Name</label>
+        <input type="text" id="fname" placeholder="Author First Name" formControlName="firstName">
+        <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="alert alert-danger">
+            <div *ngIf="firstName?.errors?.['required']">
+                First Name is required
+            </div>
+
+        </div>
+        
+
+        <label for="phone">Phone Number</label>
+        <input #phonelength type="text" id="phone" placeholder="Ex 1234567890" formControlName="phone">
+        <div class="char-count"> <h5>Characters: {{phonelength.value.length}}/10</h5></div>
+        <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="alert alert-danger">
+    
+            <div *ngIf="phone?.errors?.['required']">
+                Phone Number is Required
+            </div>
+
+            <div *ngIf="phone?.errors?.['minlength'] || ['maxlength']">
+                Phone Number must be 10 characters long
+            </div>
+
+        </div>
+
+        <mat-radio-group class="container">
+            <div class="radio-list">
+                <label  for="contract">Is Author on a Contract?</label>
+                <div class="radio-item">
+                    <mat-radio-button type="radio" id="true" [value]='true' formControlName="contract">
+                    True</mat-radio-button>
+                </div>
+                <div class="radio-item">
+                    <mat-radio-button type="radio" id="false" [value]="false" formControlName="contract">
+                    False</mat-radio-button>
+                </div>
+            
+            </div>
+            <div *ngIf="contract?.invalid && (contract?.dirty || contract?.touched)" class="alert alert-danger">
+                <div *ngIf="contract?.errors?.['required']">
+                    Must Select an option
+                </div>
+            </div>
+        </mat-radio-group>
+        <br>
+        <label for="city">City</label><label class="optional">(Optional)</label>
+        <input type="text" id="city" placeholder="Ex Toronto" formControlName="city">
+
+        <label for="state">State</label><label class="optional">(Optional)</label>
+        <input type="text" id="state" placeholder="Ex ON" formControlName="state">
+        <div *ngIf="state?.invalid && (state?.dirty || state?.touched)" class="alert alert-danger">
+
+            <div *ngIf="state?.errors?.['minlength'] || ['maxlength']">
+                State must be 2 characters long
+            </div>
+
+
+        </div>
+
+
+
+        <label for="zip">Zip Code</label><label class="optional">(Optional)</label>
+        <input type="text" id="zip" placeholder="Ex 12345" formControlName="zip">
+
+        <label for="address">Address</label><label class="optional">(Optional)</label>
+        <input type="text" id="address" placeholder="Ex 123st" formControlName="address">
+
+        
+
+        <input type="submit" value="Submit" id="btn">
+
+
+    </form>
+
+</div>
+
+
+<!--
+    Old Form
+-->
+
+
+<!-- <div class="ng-container">
+    <form class="example-form">
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Author id</mat-label>
+            <input matInput #id maxlength=11 name="author" [ngModel]='author' placeholder="Ex 111-11-1111">
+            <mat-hint> Must be of form xxx-xx-xxxx</mat-hint>
+            <mat-hint align="end"> Char count: {{id.value.length}}/11</mat-hint>
+
+
+
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput #name maxlength="10" value="" placeholder="Authors First Name">
+            <mat-hint>Min Characters 3: {{name.value.length}} /3</mat-hint>
+            <mat-error> Name is required</mat-error>
+            
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput #name value="" placeholder="Authors Last name">
+            <mat-hint>Max Characters 10: {{name.value.length}}/10</mat-hint>
+            
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput #phone type="tel" value="" placeholder="Ex 1234567890">
+            <mat-hint>Must be 10 digits: {{phone.value.length}}/10</mat-hint>
+            
+
+
+
+        </mat-form-field>
+
+        
+
+        <div style="margin-top: 10px;" class="example-full-width, radio-list">
+            <div style="margin: auto; color: darkslategrey;">
+            <mat-label> Is author on Contract?</mat-label>
+            </div>
+            <mat-radio-group value="">
+                <mat-radio-button [value]="true">True</mat-radio-button>
+                <mat-radio-button [value]="false">False</mat-radio-button>
+
+            </mat-radio-group>
+
+        </div>
+        
+
+         <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Ex Toronto" value="">
+
+         </mat-form-field>
+
+         <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>State</mat-label>
+            <input matInput  placeholder="Ex ON" minlength=2 maxlength=2 value="">
+            <mat-hint>Must be only 2 characters long</mat-hint>
+            
+         </mat-form-field>
+
+         <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Zip</mat-label>
+            <input matInput  minlength=5 maxlength=5 placeholder="Ex. 123st" value="">
+            <mat-hint>Must be 5 characters long</mat-hint>
+            
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Address</mat-label>
+            <input matInput #address placeholder="Ex 123st" maxlength=40 value="">
+            <mat-hint>Max Characters: 40 {{address.value.length}}/40 </mat-hint>
+        </mat-form-field>
+
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button type="submit" (click)="createAuthor(this.author)">Create Author</button>
+
+        </div>
+
+    </form>
+
+    
+
+</div> -->

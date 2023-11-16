@@ -1,0 +1,31 @@
+<div class="navBar">
+
+
+  <h1>Welcome to my {{title}}</h1>
+
+  <nav mat-tab-nav-bar mat-align-tabs="center" animationDuration="1000ms"
+    [tabPanel]="tabPanel">
+      <a mat-tab-link *ngFor="let link of links; index as i"
+      [routerLink]="link"
+      (click)="activeLink=link"
+      [active]="activeLink==link">{{titles[i]}}</a>
+      
+      <!-- <a mat-tab-link routerLink="/authors">Authors</a>
+      <a mat-tab-link routerLink="/dashboard">Top Authors</a>
+      <a mat-tab-link routerLink="/authors">Add Author</a> -->
+
+  </nav>
+</div>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+
+
+<!-- <nav>
+    <a mat-raised-button routerLink="/authors"> Authors</a>
+    <a mat-raised-button routerLink="/dashboard"> Top Authors</a>
+</nav> -->
+<main [@routeAnimations]="prepareRoute(outlet)" class="content">
+  <router-outlet #outlet="outlet"></router-outlet>
+
+</main>
+
+<app-messages></app-messages>

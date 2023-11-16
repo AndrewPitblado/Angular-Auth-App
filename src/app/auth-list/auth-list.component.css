@@ -1,0 +1,139 @@
+:host {
+  display:block;
+  background-color: rgb(242, 239, 239);
+  
+  
+} 
+
+h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-top: .8rem;
+  margin-bottom: .8rem;
+  background-color: rgba(19, 19, 19, 0.802);
+  border-radius: 3px;
+  padding: 5px;
+}
+
+th{
+  padding:auto;
+  
+}
+
+.sticky-header{
+  background-color: black;
+  color: azure;
+  margin-bottom: 15px;
+}
+
+.author-books-row{
+  background-color: rgba(255, 255, 255, 0.569);
+}
+
+tr{
+  color: rgb(0, 0, 0);
+ 
+  
+}
+
+td{
+  align-content: center;
+}
+td button{
+  margin: 5px;
+}
+a{
+  color: black;
+  background-color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+
+
+
+
+.success{
+  background-color: rgb(79, 79, 79);
+  
+}
+
+td a:hover{
+  color: antiquewhite;
+  background-color:rgb(0, 0, 0);
+  
+}
+
+table{
+  
+  width: 100% !important;
+  
+
+}
+
+.mat-mdc-form-field{
+  font-size: 20px;
+  width: auto;
+  
+  padding: .5rem;
+  
+}
+
+button.delete-button{
+  background-color: rgba(237, 71, 71, 0.743);
+  color: azure;
+}
+button.delete-button:hover{
+  background-color: red;
+  color: azure;
+}
+
+button.close-button{
+  background-color: black;
+  color: azure;
+}
+input{
+  margin-top: .6rem;
+  padding: 5px 5px;
+  box-sizing:content-box;
+  box-shadow: inset;
+  border: 2px solid slategrey;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+ 
+}
+
+mar-card{
+  margin: 100%;
+  
+}
+
+button{
+  margin:2px;
+  
+}
+
+mat-paginator{
+  margin-top: 20px;
+  display: -webkit-flex;
+  justify-content:center;
+  background-attachment: fixed;
+  color:rgb(242, 239, 239);
+  background-color:rgba(0, 0, 0, 0.746);
+  border-radius: 5px;
+  
+
+  
+  
+
+  
+}
+
+
+
+
+
+
+
+

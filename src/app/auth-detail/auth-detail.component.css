@@ -1,0 +1,152 @@
+input{
+    margin-top: .6rem;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    box-shadow: inset;
+    border: 10px solid slategrey;
+    border-radius: 5px;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+   
+}
+
+input:hover{
+    transform: scale(1.1);
+    
+    
+}
+
+.clear{
+    transition: transform 0.3s ease-in-out;
+}
+
+.clear:hover{
+    transform: scale(1.2);
+    color: #f30a0a;
+}
+
+.ng-container{
+    display:inline-flex;
+    width: 100%;
+
+}
+
+table{
+    background-color:  rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding:10px;
+    
+
+    width: 100%;
+
+
+}
+
+.example-full-width-company{
+    background-color: rgba(0, 0, 0, 0.795);
+    width: 97%;
+    margin-top: .6rem;
+    padding: 12px 20px;
+    border-radius: 10px 10px 0 0;
+    color: rgb(255, 255, 255);
+
+    
+    
+}
+
+tr{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+/* @media screen and (max-width: 993px){
+    table{
+        flex: 80%;
+    }
+} */
+
+/* @media screen and (max-width: 600px){
+    tr{
+        flex-direction: column;
+    }
+} */
+
+input:focus{
+    background-color: rgb(182, 182, 182);
+}
+
+label{
+    padding: 12px;
+    display: inline-block;
+}
+
+.example-form{
+    min-width: 150px;
+    flex: 0 0 75%;
+    
+}
+
+.example-full-width{
+    width: 100%;
+}
+
+.example-full-width-end{
+    border-radius: 0 0 10px;
+    width: 100%;
+}
+
+td{
+    padding-right: 8px;
+}
+
+mat-card{
+    background-color: rgba(214, 216, 216, 0.782);
+    border-radius: 5px;
+    border: solid black;
+    flex: 0 0 25%;
+}
+
+mat-card img{
+    align-self: center;
+}
+
+
+.back{
+    margin-top: 1.8em;
+    margin-left: 1.8em;
+    font-size: larger;
+    padding:10px;
+    border-radius: 5px;
+    border: 3px solid black;
+    border-style: groove;
+    background-color: cornsilk;
+    transition: transform .5s ease-in-out;
+
+
+
+}
+
+.update{
+
+    margin-top: 1.8em;
+    margin-left: 1.8em;
+    font-size: larger;
+    padding:10px;
+    border-radius: 5px;
+    border: 3px solid black;
+    border-style: groove;
+    background-color: rgb(92, 189, 92);
+    transition: transform .5s ease-in-out;
+
+}
+
+.update:hover{
+    background-color: rgb(13, 183, 13);
+    transform: scale(1.1);
+}
+
+.back:hover{
+    background-color: rgb(210, 30, 30);
+    transform: scaleY(1.2);
+}
+

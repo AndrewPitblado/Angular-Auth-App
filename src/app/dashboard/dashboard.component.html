@@ -1,0 +1,44 @@
+
+<h1 class="mat-display-4">Top Authors!</h1>
+<h2 class="mat-display-3">Here are our 6 Best Selling Authors</h2>
+<div class="authors-menu">
+
+    <mat-card class="dashboard-card" *ngFor="let author of authors">
+        <mat-card-header class="title">
+            <div mat-card-avatar>
+                <mat-icon>
+                    person
+                </mat-icon>
+
+            </div>
+            <mat-card-title>{{author.FirstName}}</mat-card-title>
+            <mat-card-subtitle> {{author.LastName}}</mat-card-subtitle>
+
+        </mat-card-header>
+        <img mat-card-md-image src="assets/person.png" alt="Photo of Author">
+           
+            <mat-card-content>
+              
+                
+               
+                    <br>To learn more about {{author.FirstName}}
+                    <br>Click the Details Button Below!
+                    
+                
+
+            </mat-card-content>
+
+            <mat-card-actions>
+                <a routerLink="/detail/{{author.id}}">Details</a>
+
+            </mat-card-actions>
+            
+          
+    
+        
+    
+    </mat-card>
+
+</div>
+
+

@@ -1,0 +1,161 @@
+<div class="ng-container" *ngIf="author">
+
+    <mat-card class="dashboard-card">
+        <mat-card-header class="title">
+            <div mat-card-avatar>
+                <mat-icon>
+                    person
+                </mat-icon>
+
+            </div>
+            <mat-card-title>{{author.FirstName}}</mat-card-title>
+            <mat-card-subtitle> {{author.LastName}}</mat-card-subtitle>
+
+        </mat-card-header>
+        <img mat-card-md-image src="/assets/person.png" alt="Photo of Author">
+           
+            <mat-card-content>
+                <span>
+                <h3>First Name: {{author.FirstName}}</h3>
+            
+            
+                <h3>Last Name: {{author.LastName}}</h3>
+                <h3>Phone: {{author.Phone}}</h3>
+                <h3>Contract: {{author.Contract}}</h3>
+                <h3>City: {{author.City}}</h3>
+                <h3>Zip: {{author.Zip}}</h3>
+            </span>
+              
+                
+               
+                    
+                    
+                
+
+            </mat-card-content>
+
+            <mat-card-actions>
+                
+
+            </mat-card-actions>
+            
+          
+    
+        
+    
+    </mat-card>
+
+   
+    <form class="example-form">
+        <mat-form-field appearance="outline" class="example-full-width-company">
+          <mat-label>Company (disabled)</mat-label>
+          <input matInput disabled value="Pubs">
+        </mat-form-field>
+      
+        <table class="example-full-width" cellspacing="5"><tr>
+          <td><mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>First name</mat-label>
+            <input matInput required name="FirstName" [(ngModel)]="author.FirstName">
+            <button class="clear" *ngIf="author.FirstName" matSuffix mat-icon-button aria-label="Clear" (click)="author.FirstName=''">
+                <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field></td>
+          <td><mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput required name="LastName" [(ngModel)]="author.LastName">
+            <button class="clear" *ngIf="author.LastName" matSuffix mat-icon-button aria-label="Clear" (click)="author.LastName=''">
+                <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field></td>
+        </tr></table>
+      
+        <table class="example-full-width" cellspacing="5"><tr>
+          <td><mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Phone</mat-label>
+            <input matInput required name="Phone" placeholder="Ex. 1131931123" [(ngModel)]="author.Phone">
+            <button class="clear" *ngIf="author.Phone" matSuffix mat-icon-button aria-label="Clear" (click)="author.Phone=''">
+                <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field></td>
+          <td>
+            <mat-label id="contract-radio">Is Author on Contract?</mat-label>
+            <mat-radio-group name="Contract" [(ngModel)]="author.Contract" (change)="author.Contract">
+            <mat-radio-button class="radio-button"  [value]="true">
+              true
+            </mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="false">
+              false
+            </mat-radio-button>
+          
+          </mat-radio-group>
+            
+        </tr></table>
+      
+        <table class="example-full-width-end" cellspacing="5"><tr>
+          <td><mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Ex. Toronto" name="City" [(ngModel)]="author.City">
+            <button class="clear" *ngIf="author.City" matSuffix mat-icon-button aria-label="Clear" (click)="author.City=''">
+                <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field></td>
+          <td><mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Ex. California" name="State" [(ngModel)]="author.State">
+            <button class="clear" *ngIf="author.State" matSuffix mat-icon-button aria-label="Clear" (click)="author.State=''">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-hint>Only 2 Characters Long</mat-hint>
+          </mat-form-field></td>
+          <td><mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Zip</mat-label>
+            <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" name="Zip" [(ngModel)]="author.Zip" value="">
+            <button class="clear" *ngIf="author.Zip" matSuffix mat-icon-button aria-label="Clear" (click)="author.Zip=''">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-hint align="start">5 Characters long</mat-hint>
+            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+          </mat-form-field></td>
+          <td><mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Address</mat-label>
+            <input matInput #address placeholder="123st" name="Address" [(ngModel)]="author.Address" value="">
+            <button class="clear" *ngIf="author.Address" matSuffix mat-icon-button aria-label="Clear" (click)="author.Address=''">
+              <mat-icon>close</mat-icon>
+            </button>
+
+
+          </mat-form-field></td>
+        </tr></table>
+      </form>
+
+    
+
+
+
+
+
+
+
+
+    <!-- <div class="mat-display-3">{{ author.FirstName| uppercase}} {{author.lname}} Details</div>
+    <div> Phone Number: {{author.Phone}}</div>
+    <div> Start Date: {{author.Contract}}</div>
+
+    <div>
+        <label for="author-name"> Author Name: </label>
+        
+    </div>
+    <div>
+        <input id="author-name" [(ngModel)]="author.FirstName"
+    placeholder="First name">
+        <input id="author-name"[(ngModel)]="author.LastName"
+    placeholder="Last name">
+    </div> -->
+
+
+   
+</div>
+<div class="buttons">
+    <button class="back" type="button" (click)="goBack()"> Go Back</button>
+    <button class="update" type="button" (click)="updateAuthor(author); showSnackbar('Author has been updated', 'Done', '2000'); goBack()">Update Author</button>
+</div>

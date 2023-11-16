@@ -1,0 +1,106 @@
+:host{
+    display: block;
+    background-color: rgba(255, 255, 255, 0.66);
+} 
+
+.mat-table{
+    overflow: scroll;
+    max-width: 99%;
+}
+
+
+.mat-cell, .mat-header-cell{
+    word-wrap: initial;
+    /* display: table-cell; */
+    padding: 10px 10px;
+    line-break: unset;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.mat-row, .mat-header-row{
+    /* display: table-row; */
+    height: auto;
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: .8rem;
+    margin-bottom: .8rem;
+    background-color: rgba(19, 19, 19, 0.802);
+    border-radius: 3px;
+    padding: 5px;
+  }
+
+  th{
+    padding:auto;
+    
+  }
+
+.sticky-header{
+    background-color: black;
+    color: azure;
+    margin-bottom: 15px;
+}
+
+.mat-mdc-form-field{
+    font-size: 20px;
+    width: auto;
+    
+    padding: .5rem;
+    
+}
+
+tr{
+    color: rgb(0, 0, 0);
+    padding: 5px;
+   
+    
+}
+
+td{
+    align-content: center;
+}
+
+table{
+  
+    width: 100% !important;
+    
+  
+}
+
+
+input{
+    margin-top: .6rem;
+    padding: 5px 5px;
+    box-sizing:content-box;
+    box-shadow: inset;
+    border: 2px solid slategrey;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+   
+}
+
+
+mat-paginator{
+    margin-top: 20px;
+    display: -webkit-flex;
+    justify-content:center;
+    background-attachment: fixed;
+    color:rgb(242, 239, 239);
+    background-color:rgba(0, 0, 0, 0.746);
+    border-radius: 5px;
+    
+  
+    
+    
+  
+    
+}
+
+

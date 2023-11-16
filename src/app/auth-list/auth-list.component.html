@@ -1,0 +1,256 @@
+<h2> Here are a list of Authors from Pubs.inc!</h2>
+<mat-form-field  >
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Andrew" #input>
+    
+</mat-form-field>
+    <a mat-raised-button href="javascript:void(0)" (click)="toggleTableRows()" color="primary">Show all Books</a>
+
+
+
+   
+
+    <table mat-table matSort mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef >id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    
+        </ng-container>
+    
+        <ng-container matColumnDef="AuthorName">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>Author Name</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button  routerLink="/detail/{{element.id}}"> {{element.FirstName}} {{element.LastName}}</button>
+                <button mat-raised-button *ngIf="this.bookButtonVisible" (click)="getAuthorBooks(element.id); element.isExpanded = true; this.bookButtonVisible=false; this.closeButtonVisible=true">View Books</button>
+                <button mat-raised-button class="close-button" *ngIf="this.closeButtonVisible" (click)="element.isExpanded = false; this.closeButtonVisible=false; this.bookButtonVisible=true">Close</button>
+               </td>
+            
+        </ng-container>
+
+
+        <ng-container matColumnDef="authorsBooks">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="row-author-books" [@detailExpand]="element.isExpanded ? 'expand' : 'collapsed'">
+                    <table mat-table [dataSource]="booksDataSource">
+
+                        <ng-container matColumnDef="Title">
+                            <th mat-header-cell *matHeaderCellDef>Title</th>
+                            <td mat-cell *matCellDef="let element2">
+                                {{element2.title}}
+                            </td>
+
+
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="Type">
+                            <th mat-header-cell *matHeaderCellDef>Type</th>
+                            <td mat-cell *matCellDef="let element2">
+                                {{element2.type}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Price">
+                            <th mat-header-cell *matHeaderCellDef>Price</th>
+                            <td mat-cell *matCellDef="let element2">
+                                {{element2.price}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="PubDate">
+                            <th mat-header-cell *matHeaderCellDef>Pub Date</th>
+                            <td mat-cell *matCellDef="let element2">
+                                {{element2.pubdate}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Notes">
+                            <th mat-header-cell *matHeaderCellDef>Notes</th>
+                            <td mat-cell *matCellDef="let element2">
+                                {{element2.notes}}
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay2"></tr>
+                        <tr mat-row *matRowDef="let row2; columns:columnsToDisplay2;"></tr>
+
+
+
+
+
+
+
+
+                    </table>
+                        
+                </div>
+
+
+            </td>
+
+
+
+
+
+        </ng-container>
+        <!-- `<ng-container matColumnDef="FirstName">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>LastName</th>
+            <td mat-cell *matCellDef="let element">
+                <a mat-raised-button  routerLink="/detail/{{element.id}}">{{element.FirstName}}</a>
+    
+            </td>
+    
+        </ng-container> -->
+        <ng-container matColumnDef="Contract">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>Contract</th>
+            <td mat-cell *matCellDef="let element">{{element.Contract}}</td>
+    
+        </ng-container>
+        <ng-container matColumnDef="Phone">
+            <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let element">{{element.Phone}}</td>
+    
+        </ng-container>
+        <ng-container matColumnDef="Address">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let element">{{element.Address}}</td>
+    
+        </ng-container>
+        <ng-container matColumnDef="City">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef >City</th>
+            <td mat-cell *matCellDef="let element">{{element.City}}</td>
+    
+        </ng-container>
+        <ng-container matColumnDef="State">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>State</th>
+            <td mat-cell *matCellDef="let element">{{element.State}}</td>
+    
+        </ng-container>
+        <ng-container matColumnDef="Zip">
+            <th mat-header-cell *matHeaderCellDef>Zip</th>
+            <td mat-cell *matCellDef="let element">{{element.Zip}}</td>
+    
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button routerLink="/detail/{{element.id}}">Edit</button>
+                <button mat-raised-button class="delete-button" (click)="deleteAuthor(this.element); showSnackbar('Author has been Deleted', 'Done', '2000')">Delete</button>
+            </td>
+    
+        </ng-container>
+    
+    
+    
+    
+    
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay;sticky:true" class="sticky-header"></tr>
+        <tr mat-row *matRowDef="let row; columns:columnsToDisplay;" class="author-element-row"
+        [class.author-expanded-row]="row.isExpanded"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['authorsBooks']" class="author-books-row"></tr>
+        <tr mat-row *matNoDataRow>
+            <td mat-cell colspan="6">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    
+    
+    
+    
+    
+    
+    </table>
+
+    <br>
+    
+    <div>
+        <mat-paginator #paginator class="custom-paginator"  [pageSizeOptions]="[5, 10, 20]" aria-label="Select page"></mat-paginator>
+
+    </div>
+    
+
+
+
+
+<!-- <table>
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Contract</th>
+    </thead>
+    <tbody class="authors">
+        <tr *ngFor="let author of authors">
+            <td>
+                <a routerLink="/authors/{{author.id}}">{{author.fname}}
+                    
+                </a>
+            
+                
+               
+            </td>
+            <td>
+                <a routerLink="/authors/{{author.id}}">{{author.lname}}
+                    
+                </a>
+            
+
+            </td>
+            <td>
+                
+                    <a routerLink="/authors/{{author.id}}">{{author.address}}</a>
+                
+            </td>
+            <td>
+                
+                    <a routerLink="/authors/{{author.id}}">{{author.city}}</a>
+                
+            </td>
+            <td>
+                
+                    <a routerLink="/authors/{{author.id}}">{{author.state}}</a>
+
+                
+            </td>
+            <td>
+                
+                    <a routerLink="/authors/{{author.id}}">{{author.zip}}</a>
+                
+            </td>
+            <td>
+                
+                    <a routerLink="/authors/{{author.id}}">{{author.contract}}</a>
+                
+            </td>
+
+        
+
+
+
+
+
+        </tr>
+
+    </tbody>
+</table> -->
+
+
+<!-- <ul class="authors">
+    <li *ngFor="let Author of authors">
+        <a routerLink="/detail/{{Author.fname}}">
+            <span class="badge"> {{Author.fname}}</span>
+            {{Author.lname}}
+        </a>
+        
+           
+            
+        
+    </li>
+
+    
+
+</ul> -->
+
