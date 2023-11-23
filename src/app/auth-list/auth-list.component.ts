@@ -77,9 +77,9 @@ export class AuthListComponent implements OnInit{
     
     this.getAuthors();
 
-    this.dataSource.forEach((row: { id: string; })=>{
-      this.getAuthorBooks(row.id)
-    })
+    // this.dataSource.forEach((row: { id: string; })=>{
+    //   this.getAuthorBooks(row.id)
+    // });
     
 
     
@@ -92,11 +92,13 @@ export class AuthListComponent implements OnInit{
 
   toggleTableRows(){
     this.isTableExpanded = !this.isTableExpanded;
-    this.dataSource.data.forEach((row:any) => { 
-      row.isExpanded = this.isTableExpanded;
-      
-      
+    this.dataSource.data.forEach((row:{id: string; }) => { 
+      this.getAuthorBooks(row.id);
+
     });
+    this.dataSource.data.forEach((row:any) =>{
+      row.isExpanded = this.isTableExpanded;
+    })
   }
 
   openDialog(){

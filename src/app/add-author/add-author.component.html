@@ -51,8 +51,8 @@
         
 
         <label for="phone">Phone Number</label>
-        <input #phonelength type="text" id="phone" placeholder="Ex 1234567890" formControlName="phone">
-        <div class="char-count"> <h5>Characters: {{phonelength.value.length}}/10</h5></div>
+        <input #phonelength type="text" id="phone" placeholder="Ex 123-456-7890" formControlName="phone">
+        <div class="char-count"> <h5>Characters: {{phonelength.value.length}}/12</h5></div>
         <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="alert alert-danger">
     
             <div *ngIf="phone?.errors?.['required']">
@@ -60,7 +60,7 @@
             </div>
 
             <div *ngIf="phone?.errors?.['minlength'] || ['maxlength']">
-                Phone Number must be 10 characters long
+                Phone Number must be 12 characters long
             </div>
 
         </div>

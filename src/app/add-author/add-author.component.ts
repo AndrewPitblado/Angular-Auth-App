@@ -40,7 +40,7 @@ export class AddAuthorComponent implements OnInit{
       lastName : new FormControl('', [Validators.required]),
       firstName : new FormControl('', [Validators.required]),
       
-      phone : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      phone : new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
       contract : new FormControl(true, [Validators.required]),
       city : new FormControl(''),
       state : new FormControl('', [ Validators.minLength(2), Validators.maxLength(2)]),
@@ -96,6 +96,7 @@ export class AddAuthorComponent implements OnInit{
     console.log(this.reactiveForm);
     this.createAuthor(this.reactiveForm.value);
     this.location.back();
+    window.location.reload();
   }
 
   author: any;

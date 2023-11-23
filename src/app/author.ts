@@ -1,7 +1,7 @@
 export interface Author {
     id: string;
-    fname: string;
     lname: string;
+    fname: string;
     phone: string;
     contract: boolean;
     address?: string;

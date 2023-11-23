@@ -1,4 +1,171 @@
-input{
+
+input[type=text]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=radio]{
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: #2196F3;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid rgb(4, 4, 4);
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+    display: flex;
+    place-content: center;
+}
+
+input[type=radio]::before{
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+}
+
+
+
+input[type=radio]:checked{
+    transform: scale(1);
+}
+
+input[type=radio]:focus{
+    outline: max(2px, 0.15em) solid #2196F3;
+    outline-offset: max(2px, 0.15em);
+}
+
+.radio-item{
+    display: flex;
+}
+
+.contract-label{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.15rem;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-top: -14px;
+    
+    
+    
+    
+}
+
+
+
+
+
+.form{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+tr{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 992px){
+    table{
+        flex: 50%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    tr{
+        flex-direction: column;
+    }
+}
+
+input:focus{
+    background-color: rgb(175, 175, 175);
+}
+
+label{
+    padding: 12px;
+    display: inline-block;
+}
+
+.example-form{
+    min-width: 150px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.example-full-width{
+    width: 100%;
+    margin: 8px;
+}
+
+td{
+    padding-right: 8px;
+}
+
+mat-card{
+    background-color: rgba(225, 203, 97, 0.796);
+    border-radius: 5px;
+    border:  3px solid black;
+    margin: 12px;
+}
+
+mat-card-content{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.mat-mdc-radio-button{
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+}
+
+
+.ng-valid[required], .ng-valid.required{
+    border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+
+}
+
+.alert div{
+    background-color: #fed3d3;
+    color: #820000;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.char-count{
+    margin-top: -25px;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: oblique;
+    margin-left: 20px;
+
+}
+
+
+.optional{
+    font-size: 14px;
+    font-weight: lighter;
+    font-style: italic;
+}
+
+
+
+
+/* input{
     margin-top: .6rem;
     padding: 12px 20px;
     box-sizing: border-box;
@@ -14,9 +181,17 @@ input:hover{
     transform: scale(1.1);
     
     
-}
+} */
+
+
+    
 
 .clear{
+    display: inline-flex;
+    position: absolute;
+    top: auto;
+    right: 15px;
+
     transition: transform 0.3s ease-in-out;
 }
 
@@ -44,7 +219,8 @@ table{
 
 .example-full-width-company{
     background-color: rgba(0, 0, 0, 0.795);
-    width: 97%;
+    width: 95%;
+    display: inline-block;
     margin-top: .6rem;
     padding: 12px 20px;
     border-radius: 10px 10px 0 0;
@@ -71,13 +247,11 @@ tr{
     }
 } */
 
-input:focus{
-    background-color: rgb(182, 182, 182);
-}
+
 
 label{
     padding: 12px;
-    display: inline-block;
+    display: inline-flex;
 }
 
 .example-form{

@@ -1,51 +1,173 @@
 <div class="ng-container" *ngIf="author">
 
-    <mat-card class="dashboard-card">
-        <mat-card-header class="title">
-            <div mat-card-avatar>
-                <mat-icon>
-                    person
-                </mat-icon>
+  <mat-card class="dashboard-card">
+    <mat-card-header class="title">
+      <div mat-card-avatar>
+        <mat-icon>
+          person
+        </mat-icon>
 
-            </div>
-            <mat-card-title>{{author.FirstName}}</mat-card-title>
-            <mat-card-subtitle> {{author.LastName}}</mat-card-subtitle>
+      </div>
+      <mat-card-title>{{author.FirstName}}</mat-card-title>
+      <mat-card-subtitle> {{author.LastName}}</mat-card-subtitle>
 
-        </mat-card-header>
-        <img mat-card-md-image src="/assets/person.png" alt="Photo of Author">
-           
-            <mat-card-content>
-                <span>
-                <h3>First Name: {{author.FirstName}}</h3>
+    </mat-card-header>
+    <img mat-card-md-image src="/assets/person.png" alt="Photo of Author">
+
+    <mat-card-content>
+      <span>
+        <h3>First Name: {{author.FirstName}}</h3>
+
+
+        <h3>Last Name: {{author.LastName}}</h3>
+        <h3>Phone: {{author.Phone}}</h3>
+        <h3>Contract: {{author.Contract}}</h3>
+        <h3>City: {{author.City}}</h3>
+        <h3>Zip: {{author.Zip}}</h3>
+      </span>
+
+
+
+
+
+
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+
+    </mat-card-actions>
+
+
+
+
+
+  </mat-card>
+
+
+  <div class="form">
+    <h2 id="update author">Update Author</h2>
+    <form [formGroup]="reactiveForm">
+      <label for="LastName">Last Name</label>
+      <input type="text" id="lname" formControlName="lastName" required [(ngModel)]="author.LastName">
+      <button class="clear" *ngIf="author.LastName"  mat-icon-button aria-label="Clear"
+        (click)="author.LastName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div *ngIf="lastName?.invalid &&(lastName?.dirty || lastName?.touched)" class="alert alert-danger">
+        <div *ngIf="lastName?.errors?.['required']">
+          Last Name is required
+        </div>
+      </div>
+
+      <label for="FirstName">First Name</label>
+      <input type="text" id="fname" formControlName="firstName" required [(ngModel)]="author.FirstName">
+      <button class="clear" *ngIf="author.FirstName" matSuffix mat-icon-button aria-label="Clear"
+        (click)="author.FirstName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div *ngIf="firstName?.invalid &&(firstName?.dirty || firstName?.touched)" class="alert alert-danger">
+        <div *ngIf="firstName?.errors?.['required']">
+          First Name is required
+        </div>
+      </div>
+
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" formControlName="phone" placeholder="Ex 123-456-7890" required [(ngModel)]="author.Phone">
+      <button class="clear" *ngIf="author.Phone" matSuffix mat-icon-button aria-label="Clear" (click)="author.Phone=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div *ngIf="phone?.invalid &&(phone?.dirty || phone?.touched)" class="alert alert-danger">
+        <div *ngIf="phone?.errors?.['required']">
+          Phone Number is required
+        </div>
+
+        <div *ngIf="phone?.errors?.['minlength'] || ['maxlength']">
+          Phone Number must be 12 characters long
+        </div>
+
+      </div>
+
+      <mat-radio-group class="container" >
+        <div class="radio-list">
+          <label for="contract">Is Author on Contract?</label>
+          <div class="radio-item">
+            <input  type="radio" id="true" [value]="true" formControlName="contract" [(ngModel)]="author.Contract" (selectionchange)="author.Contract">
             
+            <label class="contract-label">True</label>
+
             
-                <h3>Last Name: {{author.LastName}}</h3>
-                <h3>Phone: {{author.Phone}}</h3>
-                <h3>Contract: {{author.Contract}}</h3>
-                <h3>City: {{author.City}}</h3>
-                <h3>Zip: {{author.Zip}}</h3>
-            </span>
-              
-                
-               
-                    
-                    
-                
+          </div>
 
-            </mat-card-content>
-
-            <mat-card-actions>
-                
-
-            </mat-card-actions>
+          <div class="radio-item">
+            <input type="radio" id="false" [value]="false" formControlName="contract" [(ngModel)]="author.Contract" (selectionchange)="author.Contract">
             
-          
-    
-        
-    
-    </mat-card>
+            <label class="contract-label">False</label>
+            
+          </div>
 
-   
+
+        </div>
+        <div *ngIf="contract?.invalid && (contract?.dirty || contract?.touched)" class="alert alert-danger">
+          <div *ngIf="contract?.errors?.['required']">
+            Must select an option
+          </div>
+        </div>
+      </mat-radio-group>
+
+      <br>
+      <label for="city">City</label><label class="optional">(Optional)</label>
+      <input type="text" id="city" placeholder="Ex Toronto" formControlName="city" [(ngModel)]="author.City">
+      <button class="clear" *ngIf="author.City" matSuffix mat-icon-button aria-label="Clear" (click)="author.City=''">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <label for="state">State</label><label class="optional">(Optional)</label>
+      <input type="text" id="state" placeholder="Ex ON" formControlName="state" [(ngModel)]="author.State">
+      <button class="clear" *ngIf="author.State" matSuffix mat-icon-button aira-label="Clear" (click)="author.State=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div *ngIf="state?.invalid && (state?.dirty || state?.touched)" class="alert alert-danger">
+
+        <div *ngIf="state?.errors?.['minlength'] || ['maxlength']">
+          State must be 2 characters long
+        </div>
+
+
+      </div>
+
+
+      <label for="zip">Zip Code</label><label class="optional">(Optional)</label>
+      <input type="text" id="zip" placeholder="Ex 12345" formControlName="zip" [(ngModel)]="author.Zip">
+      <button class="clear" *ngIf="author.Zip" matSuffix mat-icon-button aira-label="Clear" (click)="author.Zip=''">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <label for="address">Address</label><label class="optional">(Optional)</label>
+      <input type="text" id="address" placeholder="Ex 123st" formControlName="address" [(ngModel)]="author.Address">
+      <button class="clear" *ngIf="author.Address" matSuffix mat-icon-button aira-label="Clear"
+        (click)="author.Address=''">
+        <mat-icon>close</mat-icon>
+      </button>
+
+
+
+
+    </form>
+
+  </div>
+
+
+</div>
+<div class="buttons">
+  <button class="back" type="button" (click)="goBack()"> Go Back</button>
+  <button class="update" type="button"
+    (click)="updateAuthor(author); showSnackbar('Author has been updated', 'Done', '2000'); goBack()">Update
+    Author</button>
+</div>
+
+<!--    OLD FORM
     <form class="example-form">
         <mat-form-field appearance="outline" class="example-full-width-company">
           <mat-label>Company (disabled)</mat-label>
@@ -126,7 +248,7 @@
 
           </mat-form-field></td>
         </tr></table>
-      </form>
+      </form> -->
 
     
 
@@ -154,8 +276,4 @@
 
 
    
-</div>
-<div class="buttons">
-    <button class="back" type="button" (click)="goBack()"> Go Back</button>
-    <button class="update" type="button" (click)="updateAuthor(author); showSnackbar('Author has been updated', 'Done', '2000'); goBack()">Update Author</button>
-</div>
+

@@ -4,7 +4,7 @@ import { Author } from '../author';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthorService } from '../author.service';
-import { FormControl, FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
@@ -19,6 +19,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarModule, MatSnack
 
 export class AuthDetailComponent implements OnInit{
   public getJsonValue: any;
+  reactiveForm! : FormGroup;
   constructor(
     private route: ActivatedRoute,
     private authorService: AuthorService,
@@ -33,12 +34,29 @@ export class AuthDetailComponent implements OnInit{
  
   @Output() authorsUpdated = new EventEmitter<Author>();
 
+
+
   
  
 
   ngOnInit(): void {
    this.getAuthor();
+   this.reactiveForm= new FormGroup({
+    id : new FormControl('', [Validators.required, Validators.minLength(11),Validators.maxLength(11)]),
+    lastName : new FormControl('', [Validators.required]),
+    firstName : new FormControl('', [Validators.required]),
+    
+    phone : new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
+    contract : new FormControl(true, [Validators.required]),
+    city : new FormControl(''),
+    state : new FormControl('', [ Validators.minLength(2), Validators.maxLength(2)]),
+    zip   : new FormControl('', [ Validators.minLength(5), Validators.maxLength(5)]),
+    address  : new FormControl(''),
+    });
+   
    }
+
+   
 
 
 
@@ -67,7 +85,19 @@ export class AuthDetailComponent implements OnInit{
     .subscribe({
       next: response => {
         this.author = response;
-      this.getJsonValue = this.author;
+        this.getJsonValue = this.author;
+        this.reactiveForm.patchValue({
+          lastName: response.lname,
+          firstName: response.fname,
+          phone: response.phone,
+          contract: response.contract,
+          city: response.city,
+          state: response.state,
+          zip: response.zip
+
+        });
+
+      
       console.log(this.author);
 
       }
@@ -101,6 +131,30 @@ export class AuthDetailComponent implements OnInit{
   //   verticalPosition : this.verticalPosition
    
   // }
+
+
+  get lastName() {
+    return this.reactiveForm.get('lastName');
+  }
+
+  get firstName(){
+    return this.reactiveForm.get('firstName');
+  }
+
+  get phone() {
+    return this.reactiveForm.get('phone');
+  }
+  get contract() {
+    return this.reactiveForm.get('contract');
+  }
+
+  
+  get state() {
+    return this.reactiveForm.get('state');
+  }
+  get zip() {
+    return this.reactiveForm.get('zip');
+  }
 
   reload():void {
     window.location.reload();
